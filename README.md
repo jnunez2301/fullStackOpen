@@ -2,7 +2,7 @@
  
  A repository for the Fullstack Open course where all the exercises are being uploaded and making sure i have everything up to date.
 
-### Part 0 - [Fundamentals of Web apps]()
+### Part 0 - [Fundamentals of Web apps](/part0/)
 ### Part 1 - Introduction to React
 ### Part 2 - Communicating with server
 ### Part 3 - Programming a server with NodeJS and Express
