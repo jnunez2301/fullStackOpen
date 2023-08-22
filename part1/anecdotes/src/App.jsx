@@ -28,13 +28,14 @@ const App = () => {
       newVotes[selected] += 1
       setVotes(newVotes)
   }
-  const showMostVoted = () =>{
-    
+  
+  const showMostVoted = () =>{    
     const maxVote = Math.max(...votes)
     if(maxVote === 0) return;
     const mostVoted = votes.indexOf(maxVote)
     return anecdotes[mostVoted]
   }
+
   return (
     <div>
       <h2>Anecdote of the day</h2>
