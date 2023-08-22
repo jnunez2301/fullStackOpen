@@ -1,0 +1,1 @@
+Solutions of part 1 excersises to this folder, one app per folder
