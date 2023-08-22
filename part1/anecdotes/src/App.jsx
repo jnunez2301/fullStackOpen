@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import style from './App.module.css'
 
 const App = () => {
   const anecdotes = [
@@ -37,16 +37,18 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className={style.container}>
       <h2>Anecdote of the day</h2>
       <hr />
-      <p>{anecdotes[selected]}</p>
-      <p>Has {votes[selected]} votes</p>
+      <div className={style.anecdote}>
+        <p>{anecdotes[selected]}</p>
+      </div>
+      <p>This quote has <strong>{votes[selected]}</strong> votes</p>
       <button onClick={handleVotes}>Vote</button>
       <button onClick={handleNextAnecdote}>Next Anecdote</button>
       <h2>Anecdote with most votes</h2>
       <hr />
-      <p>{showMostVoted()}</p>
+      <p><em>{showMostVoted()}</em></p>
     </div>
 
   )
