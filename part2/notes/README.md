@@ -10,7 +10,7 @@ Currently, two official plugins are available:
 # Tools to install/run
 
 - [JSON Server](https://github.com/typicode/json-server#getting-started)
-> npm install -g json-server
-> json-server --watch db.json
-> Don't forget to add a ./db.json like:
+### npm install -g json-server
+### json-server --watch db.json
+### Don't forget to add a ./db.json like:
 > { "id": 1, "title": "json-server", "author": "typicode" }
