@@ -11,7 +11,9 @@ Currently, two official plugins are available:
 
 - [JSON Server](https://github.com/typicode/json-server#getting-started)
 ## TO RUN
-### npm install -g json-server
+~~ npm install -g json-server ~~
+### npm install json-server --save-dev
 ### json-server --watch db.json
 ### Don't forget to add a ./db.json like:
 > { "id": 1, "title": "json-server", "author": "typicode" }
+### npm install axios

@@ -18,7 +18,7 @@ export const PersonForm = ({addNewPerson}) => {
         event.preventDefault()
         //The Phonebook step 2
         /*  */
-        addNewPerson({name: newName.trim(), number: newPhone.trim()})
+        addNewPerson({name: newName.trim(), number: newPhone})
         
         setNewName('')
         setNewPhone('')

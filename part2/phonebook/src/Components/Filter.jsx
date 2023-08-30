@@ -12,6 +12,10 @@ export const Filter = ({persons}) => {
         )
         setNewFilter(filterBySearch)
     }
+    useEffect(() =>{
+      setNewFilter([...persons])
+    }, [persons])
+   
     
   return (
     <>
