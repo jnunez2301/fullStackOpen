@@ -22,8 +22,7 @@ const App = () => {
     axios
       .post('http://localhost:3000/persons', newData)
       .then(response => {
-        const addedPerson = response.data
-        setPersons([...persons, addedPerson])
+        setPersons([...persons, response.data])
       })
       .catch(error => {
         console.error('Error adding new person:', error);

@@ -21,34 +21,24 @@
       "id": 4
     },
     {
-      "name": "qwe",
-      "number": "0123",
+      "name": "ARto",
+      "number": 0,
       "id": 5
     },
     {
-      "name": "New Name on the Server",
-      "number": "1234345345",
+      "name": "Jhonatan",
+      "number": "00000",
       "id": 6
     },
     {
-      "name": "Andrea Minguez",
-      "number": "12345659",
+      "name": "Testing adding notes",
+      "number": "1230",
       "id": 7
     },
     {
       "name": "Jhonatan Nuñez",
-      "number": "1234",
+      "number": "123455",
       "id": 8
-    },
-    {
-      "name": "qwe",
-      "number": "0123",
-      "id": 9
-    },
-    {
-      "name": "q",
-      "number": "0",
-      "id": 10
     }
   ]
 }
