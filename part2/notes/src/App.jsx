@@ -1,45 +1,66 @@
 import { useState, useEffect } from "react";
-import axios from 'axios'
+import noteService from './services/notes'
 import Note from "./components/Note";
-
-/* axios
-  .get('http://localhost:3000/notes')
-  .then(response => {
-    const notes = response.data
-    console.log(notes);
-  }) */
 
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true)
 
-  const toggleImportanceOf = (id) => {
-    console.log('importance of ' + id + ' needs to be toggled')
-  }
+  
   
   const handleNoteChange = (event) => {
     setNewNote(event.target.value);
   };
 
-  useEffect(() =>{
+  /* useEffect(() =>{
     axios
       .get('http://localhost:3000/notes')
       .then(response => {
         setNotes(response.data)
       })
+  }, []) */
+
+  useEffect(() => {
+    noteService
+      .getAll()
+      .then(initialNotes =>{
+        setNotes(initialNotes)
+      })
   }, [])
+  
+  const toggleImportanceOf = (id) => {
+    const url = `http://localhost:3000/notes/${id}`
+    const note = notes.find(n => n.id === id)
+    
+    const changedNote = { ...note, important: !note.important}
+
+    noteService
+      .update(id, changedNote)
+      .then(returnedNote => {
+        setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+      })
+      .catch(error => {
+        alert(
+          `the note '${note.content}' was already deleted from server`
+        )
+        setNotes(notes.filter(n => n.id !== id))
+      })
+  }
 
   const addNote = (event) => {
     event.preventDefault();
     if (newNote === "") return;
     const noteObject = {
       content: newNote,
-      important: Math.random() < 0.5,
-      id: notes.length + 1,
+      important: Math.random() > 0.5,
     };
-    setNotes([...notes, noteObject]);
-    setNewNote("");
+    noteService
+    .create(noteObject)
+    .then(returnedNote => {
+      setNotes(notes.concat(returnedNote))
+      setNewNote('')
+    })
   };
 
   const notesToShow = showAll ? notes : notes.filter(note => note.important === true)
