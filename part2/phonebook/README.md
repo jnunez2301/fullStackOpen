@@ -16,4 +16,5 @@ Currently, two official plugins are available:
 ### npm install axios
 ### json-server --watch db.json
 ### Don't forget to add a ./db.json like:
+### npm install uuid
 > { "id": 1, "title": "json-server", "author": "typicode" }

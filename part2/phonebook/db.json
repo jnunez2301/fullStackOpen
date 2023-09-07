@@ -1,29 +1,9 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
-    },
-    {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": 2
-    },
-    {
       "name": "Dan Abramov",
       "number": "12-43-234345",
       "id": 3
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": 4
-    },
-    {
-      "name": "ARto",
-      "number": 0,
-      "id": 5
     },
     {
       "name": "Jhonatan",
@@ -39,6 +19,26 @@
       "name": "Jhonatan Nuñez",
       "number": "123455",
       "id": 8
+    },
+    {
+      "name": "can i delete this note?",
+      "number": "123",
+      "id": 9
+    },
+    {
+      "name": "Ada",
+      "number": 0,
+      "id": 10
+    },
+    {
+      "name": "jhon",
+      "number": "123",
+      "id": 11
+    },
+    {
+      "name": "jhon123",
+      "number": "123",
+      "id": 12
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuid } from 'uuid';
 
 export const PersonForm = ({addNewPerson}) => {
 
@@ -18,7 +19,10 @@ export const PersonForm = ({addNewPerson}) => {
         event.preventDefault()
         //The Phonebook step 2
         /*  */
-        addNewPerson({name: newName.trim(), number: newPhone})
+        addNewPerson({
+          name: newName.trim(),
+          number: newPhone
+        })
         
         setNewName('')
         setNewPhone('')
