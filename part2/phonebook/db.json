@@ -1,44 +1,29 @@
 {
   "persons": [
     {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": 3
-    },
-    {
-      "name": "Jhonatan",
-      "number": "00000",
-      "id": 6
-    },
-    {
-      "name": "Testing adding notes",
-      "number": "1230",
-      "id": 7
-    },
-    {
-      "name": "Jhonatan Nuñez",
-      "number": "123455",
-      "id": 8
-    },
-    {
-      "name": "can i delete this note?",
-      "number": "123",
-      "id": 9
-    },
-    {
-      "name": "Ada",
-      "number": 0,
-      "id": 10
-    },
-    {
       "name": "jhon",
-      "number": "123",
+      "number": "123213",
       "id": 11
     },
     {
-      "name": "jhon123",
+      "name": "Juan",
       "number": "123",
       "id": 12
+    },
+    {
+      "name": "Maria",
+      "number": "0000",
+      "id": 13
+    },
+    {
+      "name": "Andrea",
+      "number": "123123",
+      "id": 14
+    },
+    {
+      "name": "New Name",
+      "number": "123",
+      "id": 15
     }
   ]
 }
