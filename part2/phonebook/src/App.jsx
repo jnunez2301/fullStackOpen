@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Filter, PersonForm, Persons } from './Components/';
 import personService from './services/persons'
+import { Notification } from './Components/Notification';
+import './index.css'
+
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [loading, setLoading] = useState(true);
+  const [notification, setNotification] = useState('');
 
  //Step 2.11
   useEffect(() =>{
@@ -37,6 +41,7 @@ const App = () => {
           .then(response =>{
             updatedPersons[personIndex] = response;
             setPersons(updatedPersons);
+            setNotification(`Number of ${response.name} was updated to ${response.number}`)
           })
         } catch (error) {
           console.error('An error occurred while updating data', error);
@@ -53,13 +58,25 @@ const App = () => {
       .create(newData)
       .then(response => {
         setPersons([...persons, response])
+        setNotification(`${response.name}${response.number} was added to the list`)
       })
     }
      //2.14 step9 delete
     const handleDelete = (event) =>{
+      
       if(loading) return;
       if(window.confirm(`Do you want to delete ${event.name}`)){
-        personService.removeItem(event.id)
+            personService
+            .removeItem(event.id)
+            
+            .then(response => {
+              setNotification(`${event.name} ${event.number} was deleted from the list`)
+            })
+            .catch(error =>{
+              setNotification(`${event.name} has already been deleted from the list`)
+            })
+          
+        
       }else{
         return;
       }
@@ -70,7 +87,9 @@ const App = () => {
   return (
     <div>
       <h2>Phone book</h2>
-       
+      {
+        notification.length > 0 ? <Notification message={notification} /> : ''
+      }
       {
         loading ? 'Loading...' : 
         <>
