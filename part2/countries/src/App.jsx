@@ -2,12 +2,16 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 
+const weatherAPIKey = import.meta.env.VITE_SOME_KEY;
+
 const App = () => {
+  
   const [value, setValue] = useState("");
   const [country, setCountry] = useState(null);
   const [search, setSearch] = useState({});
+  const [weather, setWeather] = useState({})
   const [showInfo, setShowInfo] = useState(false);
-  const [clickedCountry, setClickedCountry] = useState('')
+  const [clickedCountry, setClickedCountry] = useState(null)
 
   useEffect(() => {
     if (country) {
@@ -33,6 +37,28 @@ const App = () => {
     setCountry(value);
   };
 
+  const handleCountryClick = (index) => {
+    const selectedCountry = search[index];
+    setClickedCountry(selectedCountry);
+    setShowInfo(!showInfo);
+  
+    if (selectedCountry) {
+      const lat = selectedCountry.latlng[0];
+      const lon = selectedCountry.latlng[1];
+  
+      axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherAPIKey}&units=metric`
+        )
+        .then((response) => {
+          setWeather(response.data);
+        })
+        .catch((error) => {
+          console.error('Weather request failed', error);
+        });
+    }
+  };
+  
   const handleSearch = (event) => {
     setValue(event.target.value);
   };
@@ -73,8 +99,30 @@ const App = () => {
         search.map((countries, index) => (
           <React.Fragment key={index}>
             <li>{countries.name.common}</li>
-            <button onClick={() => setShowInfo(!showInfo)}>show</button>
-            {showInfo ? countryInfo : ""}
+            <button onClick={() => handleCountryClick(index)}>show</button>
+            {showInfo && clickedCountry.name.common === countries.name.common
+             ? 
+              <>
+              <h1>{clickedCountry.name.common}</h1>
+              <p>Capital: {clickedCountry.capital}</p>
+              <ul>
+              {Object.keys(clickedCountry.languages).map((lang, langIndex) => (
+                <li key={langIndex}>{clickedCountry.languages[lang]}</li>
+              ))}
+            </ul>
+            <img src={clickedCountry.flags.png} alt={`${clickedCountry.flag} flag`}/>
+            {Object.keys(weather).length > 0 && ( // Conditionally render weather information
+                <>
+                  <h1>Weather in {clickedCountry.name.common}</h1>
+                  <p>Temperature: {weather.main.temp} Celsius </p>
+                  <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt={weather.weather[0].main} />
+                  <p>{weather.wind.speed} m/s</p>
+                </>
+              )}
+              </>
+            :
+            ''
+            }
           </React.Fragment>
         ))
       );
