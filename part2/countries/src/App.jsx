@@ -73,7 +73,6 @@ const App = () => {
         search.map((countries, index) => (
           <React.Fragment key={index}>
             <li>{countries.name.common}</li>
-            {/* <button onClick={() => setShowInfo(!showInfo)}>show</button> */}
             <button onClick={() => setShowInfo(!showInfo)}>show</button>
             {showInfo ? countryInfo : ""}
           </React.Fragment>
