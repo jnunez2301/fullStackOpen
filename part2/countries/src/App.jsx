@@ -11,7 +11,15 @@ const App = () => {
   const [search, setSearch] = useState({});
   const [weather, setWeather] = useState({})
   const [showInfo, setShowInfo] = useState(false);
+<<<<<<< Updated upstream
   const [clickedCountry, setClickedCountry] = useState(null)
+=======
+<<<<<<< HEAD
+
+=======
+  const [clickedCountry, setClickedCountry] = useState(null)
+>>>>>>> f3057e6a7fddf53955a0e6d3d4e363558b78f48b
+>>>>>>> Stashed changes
 
   useEffect(() => {
     if (country) {
@@ -63,7 +71,12 @@ const App = () => {
     setValue(event.target.value);
   };
 
- 
+  const handleCountryClick =() =>{
+    
+    setShowInfo(!showInfo);
+  }
+
+
   const ShowSearch = () => {
     
     const countryInfo = (
@@ -96,9 +109,18 @@ const App = () => {
       return search.length === 1 ? (
         countryInfo
       ) : (
+        
         search.map((countries, index) => (
           <React.Fragment key={index}>
             <li>{countries.name.common}</li>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            {/* <button onClick={() => setShowInfo(!showInfo)}>show</button> */}
+            <button onClick={() => handleCountryClick()}>show</button>
+            {showInfo ? countryInfo :" "}
+=======
+>>>>>>> Stashed changes
             <button onClick={() => handleCountryClick(index)}>show</button>
             {showInfo && clickedCountry.name.common === countries.name.common
              ? 
@@ -123,11 +145,15 @@ const App = () => {
             :
             ''
             }
+<<<<<<< Updated upstream
+=======
+>>>>>>> f3057e6a7fddf53955a0e6d3d4e363558b78f48b
+>>>>>>> Stashed changes
           </React.Fragment>
         ))
       );
     } else {
-      return <p>Please enter a more specific input</p>;
+      return <p>Please enter a valid input</p>;
     }
   };
 
