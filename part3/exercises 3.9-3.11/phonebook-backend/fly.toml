@@ -1,0 +1,19 @@
+# fly.toml app configuration file generated for blue-sea-1851 on 2023-09-11T16:05:37+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "blue-sea-1851"
+primary_region = "mad"
+
+[build]
+[env]
+  PORT = "3001"
+  
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
