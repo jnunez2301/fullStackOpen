@@ -8,24 +8,35 @@ if (process.argv.length<3) {
 const password = process.argv[2]
 
 const url =
-  `mongodb+srv://jmoisesn23:${password}@cluster0.fh9x2un.mongodb.net/?retryWrites=true&w=majority`
+  `mongodb+srv://jmoisesn23:${password}@cluster0.fh9x2un.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 
 mongoose.set('strictQuery',false)
 mongoose.connect(url)
 
-const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean,
+const phoneBookSchema = new mongoose.Schema({
+  name: String,
+  number: Number,
 })
 
-const Note = mongoose.model('Note', noteSchema)
+const Phonebook = mongoose.model('Phonebook', phoneBookSchema)
 
-const note = new Note({
-  content: 'HTML is Easy',
-  important: true,
+const phonebook = new Phonebook({
+  name: process.argv[3],
+  number: process.argv[4],
 })
 
-note.save().then(result => {
-  console.log('note saved!')
-  mongoose.connection.close()
-})
+
+
+if(phonebook.name === '' || !phonebook.number){
+  Phonebook.find({}).then(result => {
+    result.forEach(phone => {
+      console.log(`phonebook:\n${phone.name} ${phone.number}\n`)
+    })
+    mongoose.connection.close()
+  })
+}else{
+  phonebook.save().then(result => {
+    console.log(`added ${result.name} number ${result.number} to phonebook`)
+    mongoose.connection.close()
+  })
+}
