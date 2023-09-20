@@ -23,8 +23,13 @@ app.get('/api/notes', (request, response) => {
 })
 
 app.get('/api/notes/:id', (request, response) => {
-  Note.findById(request.params.id).then(note => {
-    response.json(note)
+  Note.findById(request.params.id)
+  .then(note => {
+    if(note){
+      response.json(note)
+    }else{
+      response.status(404).end()
+    }
   })
 })
 

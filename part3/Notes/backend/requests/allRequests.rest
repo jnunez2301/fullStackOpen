@@ -1,0 +1,23 @@
+POST http://localhost:3001/api/notes/
+Content-Type: application/json
+
+{
+    "name": "Name to delete",
+    "number": 5756765
+}
+###
+GET http://localhost:3001/api/notes
+###
+GET http://localhost:3001/api/notes/650afabf7e36319e0659a507
+
+###
+DELETE http://localhost:3001/api/notes/650afabf7e36319e0659a507
+
+###
+PUT http://localhost:3001/api/notes/650afe43db24f11f8691015f
+Content-Type: application/json
+
+{
+    "name": "Update",
+    "number": 456456
+}
