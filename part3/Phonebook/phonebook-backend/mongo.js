@@ -7,15 +7,27 @@ if (process.argv.length<3) {
 
 const password = process.argv[2]
 
-const url =
-  `mongodb+srv://jmoisesn23:${password}@cluster0.fh9x2un.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+const url = process.env.MONGODB_URI
 
 mongoose.set('strictQuery',false)
 mongoose.connect(url)
 
 const phoneBookSchema = new mongoose.Schema({
-  name: String,
-  number: Number,
+  name: {
+    type: String,
+    minLength: 3,
+    required: true
+  },
+  number: {
+    type: String,
+    validate: {
+      validator: function (v){
+        return /^\d{2,3}-\d+$/.test(v);
+      },
+      message: 'Invalid phone number format. It should be in the format 09-1234556 or 040-22334455.'
+    },
+    required: true,
+  },
 })
 
 const Phonebook = mongoose.model('Phonebook', phoneBookSchema)

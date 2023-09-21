@@ -1,7 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-require('dotenv').config()
 
+console.log(process.env.MONGODB_URI);
 
 const Person = require('./models/person')
 
@@ -11,10 +12,14 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static('dist'))
 
-const errorHandler = (error, request, repsonse, next) =>{
+const errorHandler = (error, request, response, next) =>{
   console.error(error.message);
 
-  if(error.name === 'CastError') return response.status(400).send({error: 'bad id request'})
+  if(error.name === 'CastError'){
+    return response.status(400).send({error: 'bad id request'})
+  }else if(error.name === 'ValidationError'){
+    return response.status(400).json({error: error.message})
+  }
 
   next(error)
 }
@@ -23,8 +28,6 @@ app.get('/api/persons', (request, response) => {
     response.json(persons)
   })
 })
-
-
 
 app.get('/api/persons/:id', (request, response, next) => {
   
@@ -51,7 +54,8 @@ app.delete('/api/persons/:id', (request, response, next) =>{
 app.put('/api/persons/:id', (request, response, next) => {
   const updatedData = request.body; 
 
-  Person.findByIdAndUpdate(request.params.id, updatedData, { new: true })
+  Person.findByIdAndUpdate(
+    request.params.id, updatedData, { new: true, runValidators: true, context: 'query' })
     .then((updatedPerson) => {
       if(updatedPerson){
         response.json(updatedPerson)
@@ -63,11 +67,12 @@ app.put('/api/persons/:id', (request, response, next) => {
 });
 
 
-app.post('/api/persons', (request, response) =>{
+app.post('/api/persons', (request, response, next) =>{
   const body = request.body
 
   if(body.name === undefined) return response.status(400).json({error: 'name is missing'})
   if(body.number === undefined) return response.status(400).json({error: 'number is missing'})
+  
 
   const person = new Person({
     name: body.name,
@@ -78,6 +83,7 @@ app.post('/api/persons', (request, response) =>{
   .then(savedPerson =>{
     response.json(savedPerson)
   })
+  .catch(error => next(error))
 })
 
 
