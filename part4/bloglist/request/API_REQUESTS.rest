@@ -4,8 +4,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Harry potter",
-    "author": "J.K Rowling",
-    "url": "https://es.wikipedia.org/wiki/Harry_Potter",
+    "title": "Chainsaw Man",
+    "author": "Tatsuki Fujimoto",
+    "url": "https://es.wikipedia.org/wiki/Chainsaw_Man",
     "likes": 10
 }
