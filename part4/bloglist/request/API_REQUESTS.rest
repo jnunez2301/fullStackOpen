@@ -1,11 +1,26 @@
 GET http://localhost:3003/api/blogs
 ###
+GET http://localhost:3003/api/blogs/6512a4f3004db31e44989452
+###
+DELETE http://localhost:3003/api/blogs/65169bf30e568d5f66a8f4a0
+###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Chainsaw Man",
-    "author": "Tatsuki Fujimoto",
-    "url": "https://es.wikipedia.org/wiki/Chainsaw_Man",
-    "likes": 10
+    "title": "Update this book",
+    "author": "me",
+    "url": "dsfa",
+    "likes": 0
+}
+
+###
+PUT http://localhost:3003/api/blogs/65169d4267238e6821562449
+Content-Type: application/json
+
+{
+    "title": "Book updated",
+    "author": "me again",
+    "url": "localhost",
+    "likes": 1
 }
