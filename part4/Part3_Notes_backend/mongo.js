@@ -1,14 +1,8 @@
 const mongoose = require('mongoose')
+const config = require('./utils/config')
 
-if (process.argv.length<3) {
-  console.log('give password as argument')
-  process.exit(1)
-}
 
-const password = process.argv[2]
-
-const url =
-  `mongodb+srv://fullstack:${password}@cluster0.o1opl.mongodb.net/?retryWrites=true&w=majority`
+const url =`${config.MONGODB_URI}`
 
 mongoose.set('strictQuery',false)
 mongoose.connect(url)
