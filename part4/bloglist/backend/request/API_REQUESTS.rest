@@ -1,10 +1,10 @@
-GET http://localhost:3003/api/blogs
+GET http://localhost:3000/api/blogs
 ###
-GET http://localhost:3003/api/blogs/6512a4f3004db31e44989452
+GET http://localhost:3000/api/blogs/654d6723bd8592e93d046a84
 ###
-DELETE http://localhost:3003/api/blogs/65169bf30e568d5f66a8f4a0
+DELETE http://localhost:3000/api/blogs/654d6723bd8592e93d046a84
 ###
-POST http://localhost:3003/api/blogs
+POST http://localhost:3000/api/blogs
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3003/api/blogs/65169d4267238e6821562449
+PUT http://localhost:3000/api/blogs/654d6723bd8592e93d046a84
 Content-Type: application/json
 
 {
